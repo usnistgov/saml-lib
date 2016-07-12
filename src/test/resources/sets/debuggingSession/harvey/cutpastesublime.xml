@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Header>
+    <Action xmlns="http://www.w3.org/2005/08/addressing" xmlns:env="http://www.w3.org/2003/05/soap-envelope" env:mustUnderstand="true">urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b</Action>
+    <ReplyTo xmlns="http://www.w3.org/2005/08/addressing">
+      <Address>http://www.w3.org/2005/08/addressing/anonymous</Address>
+    </ReplyTo>
+    <MessageID xmlns="http://www.w3.org/2005/08/addressing">urn:uuid:2507de30-0137-48c6-9705-9a8c68749fb3</MessageID>
+    <To xmlns="http://www.w3.org/2005/08/addressing">https://directcpsi.com/xdrreceiver.php</To>
+    <direct:addressBlock xmlns:direct="urn:direct:addressing" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns="urn:direct:addressing" env:relay="true" env:role="urn:direct:addressing:destination">
+      <direct:from>nist@directcpsi.com</direct:from>
+      <direct:to>testuser@directcpsi.com</direct:to>
+      <direct:metadata-level>minimal</direct:metadata-level>
+    </direct:addressBlock>
+  <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsu:Timestamp xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="directcpsi448914388assertiontimestamp"><wsu:Created>2014-04-28T20:55:26.121Z</wsu:Created><wsu:Expires>2015-04-28T20:55:26.121Z</wsu:Expires></wsu:Timestamp><saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="directcpsi448914388assertion" IssueInstant="2014-04-28T15:50:26.121-05:00" Version="2.0" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema"><saml2:Issuer Format="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName">CN=DigiCert High Assurance CA-3, OU=www.digicert.com, O=DigiCert Inc, C=US</saml2:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI="#directcpsi448914388assertion"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>U7IZy4WykCzd8WARqT/5rm+ShiY=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>lzBYezCzUjv033yt8ycuhmcGOwjgO/EWfKGt9KYZaGWar9OuNrBJD4ZNopJY1V4B/NW/vHq567EG
+kRIM+C5jL0K+21p7h26useibtsAPrP9ydgKI7SUhqVodGTQcAcg7V5OogEC+Pp8C/QmsRJ8B0BjG
+9EkmXKbi0P0o+030SR/TjRPUQVWqNoqbQmalKccUAdx8wmmQ+YkDYquycgjDkYa1ElyHqhiQRANP
+tVd/wsUxpa3r9f+srO7N87pXIThyrJnLcPxXqaperCMFDpMxmdJJIA8JKvgqfxU58P78zyokaWuN
+ZNpfS5GQWw4j5QN/Yfi38flhQz0V2oOCzJVCmhiiV0BcBr/OUX5j2lKPDyWSKhb+5Z1QN/cxSE1A
+nZi43d1WmEiXP+pRmEJ+PKrasukcMvqFZ7QzDBySBjmjNt/j920ub+e9/j+KYMr/HfXA0HRIMbEF
+pAx7/XetBlxrEfx0BUkN/rb78nKArTETKfbk/uO4Rgr9283YyUOaMPWuUJHYCWr2iJfa1kdQacr6
+FH2ikfxJeWnOM1cvJzz9BYQ/wEZTSQxjmpPK6NgiRZ7KPcguNrIr8Wveh7FfT8yoYCB/mAlh5CJm
+yIKV6V7ALICeqMPbRLYQyPPCXUe2xN7/rmUqKM+tqfNckSK78uRPFhMQGOpwF6w8CwSuI6tUYY8=</ds:SignatureValue><ds:KeyInfo><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>+b2jNLNz0Je5i1DbjzcQh5eLWghMKsZFEvuVREazdsZ/vZLXRtel922I5+Ua7jWHJNDOK43Rs0kC
+TzlfkCYHHo0xeLIrPBpRl9JVRUCeaJJpuCmoV0oS/b8c5SUjrMVGm2B4/Jum5JqT85iN/XGrBw2B
+5l5r19VWtIyKsL8Rqq+r+YcJ31CJ19cVAzmT6PuJlja1wxvHm2mTZuqnkAVX7DQ/UPVO7QJshH9h
+Ay9ACyh4D8Zjy7RExn7V/sLm+w7iKjUQ4PVCZMSmURh5SBQZ32CuGsA4nF7FaHzecc6aA1mnRUJ9
+NQVPeldu/hKYyJ/HCwH+lzDcfIo9kBPWXZZ44YNVzU8ua/w72wRBb8fx4PL1/BxMEUMZr91wEpGd
+ZMkZu1F3sH5zSkYclxV4uk3HPnC4zFjdr2TL9b/QNntfyXMMy2RznOFOt6p71ZXunRbD2WiiKjM0
+EZJP2FO1q8x71rO04DZl5i14RGgKbt0NRDH/c4rVpZbl95uJpQfLaQbGzHF0ZWwUlEE8h+PaErBc
+ohSwjxReDs7qQokJbEEpUXkW3izrVDrcNkMbdoW8dGJLPc/sseyV+PZ5yqBGV2iZ7A9FBI4Dxrti
+eoZRjGiYecK1DCGBBuy2NFC1u9/RKVFFbBSH/fNW9VzYBJpBshPW7/Vw3je9e2J/krtFPi7pmrU=</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo></ds:Signature><saml2:Subject><saml2:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName">CN=directcpsi.com, OU=PDS, O="Computer Programs and Systems, Inc.", L=Mobile, ST=Alabama, C=US</saml2:NameID><saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:holder-of-key"><saml2:SubjectConfirmationData xsi:type="saml2:KeyInfoConfirmationDataType"><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>+b2jNLNz0Je5i1DbjzcQh5eLWghMKsZFEvuVREazdsZ/vZLXRtel922I5+Ua7jWHJNDOK43Rs0kC
+TzlfkCYHHo0xeLIrPBpRl9JVRUCeaJJpuCmoV0oS/b8c5SUjrMVGm2B4/Jum5JqT85iN/XGrBw2B
+5l5r19VWtIyKsL8Rqq+r+YcJ31CJ19cVAzmT6PuJlja1wxvHm2mTZuqnkAVX7DQ/UPVO7QJshH9h
+Ay9ACyh4D8Zjy7RExn7V/sLm+w7iKjUQ4PVCZMSmURh5SBQZ32CuGsA4nF7FaHzecc6aA1mnRUJ9
+NQVPeldu/hKYyJ/HCwH+lzDcfIo9kBPWXZZ44YNVzU8ua/w72wRBb8fx4PL1/BxMEUMZr91wEpGd
+ZMkZu1F3sH5zSkYclxV4uk3HPnC4zFjdr2TL9b/QNntfyXMMy2RznOFOt6p71ZXunRbD2WiiKjM0
+EZJP2FO1q8x71rO04DZl5i14RGgKbt0NRDH/c4rVpZbl95uJpQfLaQbGzHF0ZWwUlEE8h+PaErBc
+ohSwjxReDs7qQokJbEEpUXkW3izrVDrcNkMbdoW8dGJLPc/sseyV+PZ5yqBGV2iZ7A9FBI4Dxrti
+eoZRjGiYecK1DCGBBuy2NFC1u9/RKVFFbBSH/fNW9VzYBJpBshPW7/Vw3je9e2J/krtFPi7pmrU=</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>+b2jNLNz0Je5i1DbjzcQh5eLWghMKsZFEvuVREazdsZ/vZLXRtel922I5+Ua7jWHJNDOK43Rs0kC
+TzlfkCYHHo0xeLIrPBpRl9JVRUCeaJJpuCmoV0oS/b8c5SUjrMVGm2B4/Jum5JqT85iN/XGrBw2B
+5l5r19VWtIyKsL8Rqq+r+YcJ31CJ19cVAzmT6PuJlja1wxvHm2mTZuqnkAVX7DQ/UPVO7QJshH9h
+Ay9ACyh4D8Zjy7RExn7V/sLm+w7iKjUQ4PVCZMSmURh5SBQZ32CuGsA4nF7FaHzecc6aA1mnRUJ9
+NQVPeldu/hKYyJ/HCwH+lzDcfIo9kBPWXZZ44YNVzU8ua/w72wRBb8fx4PL1/BxMEUMZr91wEpGd
+ZMkZu1F3sH5zSkYclxV4uk3HPnC4zFjdr2TL9b/QNntfyXMMy2RznOFOt6p71ZXunRbD2WiiKjM0
+EZJP2FO1q8x71rO04DZl5i14RGgKbt0NRDH/c4rVpZbl95uJpQfLaQbGzHF0ZWwUlEE8h+PaErBc
+ohSwjxReDs7qQokJbEEpUXkW3izrVDrcNkMbdoW8dGJLPc/sseyV+PZ5yqBGV2iZ7A9FBI4Dxrti
+eoZRjGiYecK1DCGBBuy2NFC1u9/RKVFFbBSH/fNW9VzYBJpBshPW7/Vw3je9e2J/krtFPi7pmrU=</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo></saml2:SubjectConfirmationData></saml2:SubjectConfirmation></saml2:Subject><saml2:AuthnStatement AuthnInstant="2014-04-28T15:48:26.121-05:00"><saml2:AuthnContext><saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:X509</saml2:AuthnContextClassRef></saml2:AuthnContext></saml2:AuthnStatement><saml2:AttributeStatement><saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:subject-id"><AttributeValue/></saml2:Attribute><saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:organization"><AttributeValue>urn:oid:directcpsi.com</AttributeValue></saml2:Attribute><saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:organization-id"><AttributeValue>urn:oid:directcpsi.com</AttributeValue></saml2:Attribute><saml2:Attribute Name="urn:oasis:names:tc:xacml:2.0:resource:resource-id"><AttributeValue/></saml2:Attribute><saml2:Attribute Name="urn:nhin:names:saml:homeCommunityId"><AttributeValue>urn:oid:1.2.840.114350.1.13.327.1.7.2.688879</AttributeValue></saml2:Attribute><saml2:Attribute Name="urn:oasis:names:tc:xacml:2.0:subject:role"><AttributeValue><hl7:Role xmlns:hl7="urn:hl7-org:v3" code="223366009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED_CT" displayName="" xsi:type="hl7:CE"/></AttributeValue></saml2:Attribute><saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:purposeofuse"><AttributeValue><PurposeOfUse xmlns="urn:hl7-org:v3" code="OPERATIONS" codeSystem="2.16.840.1.113883.3.18.7.1" codeSystemName="nhin-purpose" displayName="Operations" xsi:type="CE"/></AttributeValue></saml2:Attribute><saml2:Attribute Name="urn:oasis:names:tc:xspa:2.0:subject:npi"><AttributeValue/></saml2:Attribute></saml2:AttributeStatement><saml2:AuthzDecisionStatement Decision="Permit"><saml2:Action Namespace="urn:oasis:names:tc:SAML:1.0:action:rwedc">Execute</saml2:Action><saml2:Evidence><saml2:Assertion ID="directcpsi448914388assertionauthzdecisionstatement" IssueInstant="2014-04-28T15:50:26.121-05:00" Version="2.0"><saml2:Issuer Format="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName">C=US,ST=Alabama,L=Mobile,O=Computer Programs and Systems Inc.,OU=PDS,CN=directcpsi.com</saml2:Issuer><saml2:Conditions NotBefore="2014-04-28T14:55:26.121-05:00" NotOnOrAfter="2015-04-28T16:55:26.121-05:00"/><saml2:AttributeStatement><saml2:Attribute Name="AccessConsentPolicy" NameFormat="http://www.hhs.gov/healthit/nhin"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">urn:oid:1.2.3.4</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name="InstantAccessConsentPolicy" NameFormat="http://www.hhs.gov/healthit/nhin"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"/></saml2:Attribute><saml2:Attribute><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">urn:oid:1.2.3.4.123456789</saml2:AttributeValue></saml2:Attribute></saml2:AttributeStatement></saml2:Assertion></saml2:Evidence></saml2:AuthzDecisionStatement></saml2:Assertion><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI="#directcpsi448914388assertiontimestamp"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>USahQ97THJBABzzbVN85BWyzaZo=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>L6kfpscx0w0Rxdxe0X+6eVZFIXLbn8VeR5xq8A7TA96DndP0m5hL4jMAbs0de+p+qATT9s+9hNx0
+KUcQaKf6Jq+TVoyjJHr+wQZiOevustsVFC+CPyatStpjxWlY8DbGoE50+adDq3OrW1J195GnwdFH
+lPXxylWieX0KXHCCUXXYm1+G7BmdiqGtflOzkVJLSS/olCqvCDbdoQzNfX3XUYTB4rRPm7BPUYlw
+jctQWaXYAoIDezeDDU4lzthltK6j36tIE3YaVmcvDMLAbLlPpu1lgOTczho9vPRf8Br4jQ/eoMVf
+Rsmtp37rT8qNhlYojoGiBlXJOpmCt3UMKEHvNLjU6ulLcFniEoKJYvrgxPXiMZsl9LLjpTiw46Fm
+pRr+t2t5TUztEue2JMIUx10spZTpEnehFy9tLQeCjLHd/hd5sa5yxHUcxZ8YjF+HwgD7J+nLgXiv
+ARajj6ABXM5pyqOLcZTTS+yozmw0eTCdklJNrSspXpmuC+Es40S++7m1TSZNK888sW9a8zf4Y+Hd
+CmqYaUtJG4KNXJFKsNifz4/wo9MSAlEcEvYraDyEThMuxk6t5ihJJfm4cbR+SyFzek5S8hMvGo+R
+Z8+Q4V0QNznyYDVKKian/f7vUO1odEK5mNRGU1ardRFpD5+gP8gezom5bWIkjXuHsFdSe1ionkM=</ds:SignatureValue><ds:KeyInfo Id="#directcpsi448914388assertion"><wsse:SecurityTokenReference xmlns:wsse11="http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd" wsse11:TokenType="http://docs.oasis-open.org/wss/oasis-wss-saml-token-profile-1.1#SAMLV2.0"><wsse:KeyIdentifier ValueType="http://docs.oasis-open.org/wss/oasis-wss-saml-token-profile-1.1#SAMLID">directcpsi448914388assertion</wsse:KeyIdentifier></wsse:SecurityTokenReference></ds:KeyInfo></ds:Signature></wsse:Security></soap:Header>
+  <soap:Body>
+    <ProvideAndRegisterDocumentSetRequest xmlns="urn:ihe:iti:xds-b:2007" xmlns:ns2="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:ns3="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:ns4="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:ns5="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0">
+      <ns5:SubmitObjectsRequest>
+        <ns2:RegistryObjectList>
+          <ns2:ExtrinsicObject id="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" mimeType="text/xml" objectType="urn:uuid:7edca82f-054d-47f2-a032-9b2a5b5186c1">
+            <ns2:Slot name="creationTime">
+              <ns2:ValueList>
+                <ns2:Value>20130122103700</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Slot name="languageCode">
+              <ns2:ValueList>
+                <ns2:Value>en-us</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Slot name="serviceStartTime">
+              <ns2:ValueList>
+                <ns2:Value>20130110200019</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Slot name="serviceStopTime">
+              <ns2:ValueList>
+                <ns2:Value>20130110200019</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Slot name="sourcePatientId">
+              <ns2:ValueList>
+                <ns2:Value>1576^^^&amp;4.100&amp;ISO</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Slot name="sourcePatientInfo">
+              <ns2:ValueList>
+                <ns2:Value>PID-3|1576^^^&amp;4.100&amp;ISO</ns2:Value>
+                <ns2:Value>PID-5|Test^Child^^^</ns2:Value>
+                <ns2:Value>PID-7|19950518</ns2:Value>
+                <ns2:Value>PID-8|M</ns2:Value>
+                <ns2:Value>PID-11|101 Main St^^Chandler^AZ^85226^</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Name>
+              <ns2:LocalizedString value="34133-9"/>
+            </ns2:Name>
+            <ns2:Description>
+              <ns2:LocalizedString value="sample-ccd-a.xml"/>
+            </ns2:Description>
+            <ns2:Classification classificationScheme="urn:uuid:93606bcf-9494-43ec-9b4e-a7748d1a838d" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c101" nodeRepresentation="">
+              <ns2:Slot name="authorInstitution">
+               <ns2:ValueList>
+                  <ns2:Value>NULL</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:41a5887f-8865-4c09-adf7-e362475b143a" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c102" nodeRepresentation="Summarization of episode">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>Connect-a-thon classCodes</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="34133-9"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:f4f85eac-e6cb-4883-b524-f2705394840f" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c103" nodeRepresentation="1.3.6.1.4.1.21367.2006.7.107">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>Connect-a-thon confidentialityCodes</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="Normal Sharing"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:a09d5840-386c-46f2-b5ad-9c3699a4309d" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c104" nodeRepresentation="CDAR2/IHE 1.0">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>Connect-a-thon formatCodes</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="CDAR2/IHE 1.0"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:f33fb8ac-18af-42cc-ae0e-ed0b0bdb91e1" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c105" nodeRepresentation="Outpatient">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>Connect-a-thon healthcareFacilityTypeCodes</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="Outpatient"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:cccf5598-8b07-4b77-a05e-ae952c785ead" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c106" nodeRepresentation="General Medicine">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>Connect-a-thon practiceSettingCodes</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="General Medicine"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:f0306f51-975f-434e-a61c-c59651d33983" classifiedObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" id="c107" nodeRepresentation="34133-9">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>2.16.840.1.113883.6.1</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="SUMMARIZATION OF EPISODE NOTE"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:ExternalIdentifier id="ei01" identificationScheme="urn:uuid:58a6f841-87b3-4a3e-92fd-a8ffeff98427" registryObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" value="43234^^^&amp;1.2.3.4&amp;ISO">
+              <ns2:Name>
+                <ns2:LocalizedString value="XDSDocumentEntry.patientId"/>
+              </ns2:Name>
+            </ns2:ExternalIdentifier>
+            <ns2:ExternalIdentifier id="ei02" identificationScheme="urn:uuid:2e82c1f6-a085-4c72-9da3-8640a32e42ab" registryObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298" value="1.2.3.4.5.9">
+              <ns2:Name>
+                <ns2:LocalizedString value="XDSDocumentEntry.uniqueId"/>
+              </ns2:Name>
+            </ns2:ExternalIdentifier>
+          </ns2:ExtrinsicObject>
+          <ns2:RegistryPackage id="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c">
+            <ns2:Slot name="submissionTime">
+              <ns2:ValueList>
+                <ns2:Value>20130226213653</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Slot name="intendedRecipient">
+              <ns2:ValueList>
+                <ns2:Value>||^^Internet^testuser@directcpsi.com</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+            <ns2:Name>
+              <ns2:LocalizedString value="default value 2"/>
+            </ns2:Name>
+            <ns2:Classification classificationScheme="urn:uuid:a7058bb9-b4e4-4307-ba5b-e3f0ab85e12d" classifiedObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" id="c108" nodeRepresentation="">
+              <ns2:Slot name="authorInstitution">
+                <ns2:ValueList>
+                  <ns2:Value>NULL</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Slot name="authorSpecialty">
+                <ns2:ValueList>
+                  <ns2:Value>NULL Practice</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Slot name="authorTelecommunication">
+                <ns2:ValueList>
+                  <ns2:Value>^^Internet^ttt@directcpsi.com</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+            </ns2:Classification>
+            <ns2:Classification classificationScheme="urn:uuid:aa543740-bdda-424e-8c96-df4873be8500" classifiedObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" id="c109" nodeRepresentation="History and Physical">
+              <ns2:Slot name="codingScheme">
+                <ns2:ValueList>
+                  <ns2:Value>Connect-a-thon contentTypeCodes</ns2:Value>
+                </ns2:ValueList>
+              </ns2:Slot>
+              <ns2:Name>
+                <ns2:LocalizedString value="History and Physical"/>
+              </ns2:Name>
+            </ns2:Classification>
+            <ns2:ExternalIdentifier id="ei04" identificationScheme="urn:uuid:96fdda7c-d067-4183-912e-bf5ee74998a8" registryObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" value="1.401.400">
+              <ns2:Name>
+                <ns2:LocalizedString value="XDSSubmissionSet.uniqueId"/>
+              </ns2:Name>
+            </ns2:ExternalIdentifier>
+            <ns2:ExternalIdentifier id="ei05" identificationScheme="urn:uuid:554ac39e-e3fe-47fe-b233-965d2a147832" registryObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" value="1.401">
+              <ns2:Name>
+                <ns2:LocalizedString value="XDSSubmissionSet.sourceId"/>
+              </ns2:Name>
+            </ns2:ExternalIdentifier>
+            <ns2:ExternalIdentifier id="ei03" identificationScheme="urn:uuid:6b5aea1a-874d-4603-a4bc-96a0a7b38446" registryObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" value="43234^^^&amp;1.2.3.4&amp;ISO">
+              <ns2:Name>
+                <ns2:LocalizedString value="XDSSubmissionSet.patientId"/>
+              </ns2:Name>
+            </ns2:ExternalIdentifier>
+          </ns2:RegistryPackage>
+          <ns2:Classification classificationNode="urn:uuid:a54d6aa5-d40d-43f9-88c5-b4633d873bdd" classifiedObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" id="cl10"/>
+          <ns2:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:HasMember" id="as01" sourceObject="urn:uuid:0a2be6cb-e050-408b-ae4e-b75e1f80257c" targetObject="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298">
+            <ns2:Slot name="SubmissionSetStatus">
+              <ns2:ValueList>
+                <ns2:Value>Original</ns2:Value>
+              </ns2:ValueList>
+            </ns2:Slot>
+          </ns2:Association>
+        </ns2:RegistryObjectList>
+      </ns5:SubmitObjectsRequest>
+      <Document id="urn:uuid:fdd33223-45a6-443e-bb28-8e3eb2a89298"><Include xmlns="http://www.w3.org/2004/08/xop/include" href="cid:document392039rdkdlkslfk439392303220"/></Document>
+    </ProvideAndRegisterDocumentSetRequest>
+  </soap:Body>
+</soap:Envelope>

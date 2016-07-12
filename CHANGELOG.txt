@@ -1,0 +1,40 @@
+CHANGELOG
+=========
+
+Version 3.0.9 - (01/16/2015)
+
+- Fix bug when assertion signature id attribute was present.
+
+Version 3.0.8 - (01/15/2015)
+
+- Fix diagnostic message regarding optionality of the saml NPI attribute.
+
+
+Version 3.0.7 - (01/13/2015)
+
+- Fix validation regarding subjectNameID. Emails are now properly validated.
+
+Version 3.0.6 - (05/09/2014)
+
+- Fix validation problem with messages using default namespaces for signature.
+- Fix AuthnContextClassRef value list. Now correctly accept "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport" value
+- Fix role validation to access code system name values : SNOMED_CT or SNOMED CT (ambiguity in authorization framework)
+- Fix issuer email validation.
+- Fix validation so that assertion signature can be placed anywhere in the assertion.
+- Improved diagnostic of incorrect timestamp digest.
+- Fix role incorrect error. Now accept hl7:CE and CE xsi:type.
+- Update purposeOfUse code list with all values defined in the Autorization Framework.
+
+Version 3.0.5 - (04/21/2014)
+
+- Fix compatibility problem with JAXP for Java 7 and saxon9 (saxon9 configuration file are no longer compliant with the JDK service provider API).
+- Text found in PurposeOfUse is now sanitized and trimmed.
+- Improve validation reporting of bad timestamp Id.
+- Improve reporting of parsing errors.
+- Created alternative tests for XML signature using javax.xml.crypto to double check signature validation
+- Improve diagnostic on xml signature failures
+- Improve diagnostics for signature validation.
+- Multiple attribute statements are now accepted by the tool.
+- Multiple keyInfo are now accepted by the tool, if at least one follows the spec requirements.
+- Lax check on role type attribute
+- PurposeForUse is now rejected (should be replaced by purposeOfUse)

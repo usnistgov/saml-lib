@@ -1,0 +1,129 @@
+
+<Security
+	xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<Timestamp Id="_0"
+		xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+		<Created>2014-02-04T18:03:32Z</Created>
+		<Expires>2014-02-04T18:13:32Z</Expires>
+	</Timestamp>
+	<saml2:Assertion Version="2.0" ID="a2.16.840.1.114459.1.1.2.1"
+		IssueInstant="2014-02-04T18:03:31Z" xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+		<saml2:Issuer
+			Format="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName">C=US,S=Texas,L=Frisco,O=CorepointHealth,OU=CorepointIntegrationEngine,CN=communityexchange.corepointhealth.com
+		</saml2:Issuer>
+		<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+			<SignedInfo>
+				<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+				<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+				<Reference URI="#a2.16.840.1.114459.1.1.2.1">
+					<Transforms>
+						<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+						<Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+							<InclusiveNamespaces PrefixList="ds nhin saml2 shinny xs"
+								xmlns="http://www.w3.org/2001/10/xml-exc-c14n#" />
+						</Transform>
+					</Transforms>
+					<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+					<DigestValue>NsGRSVBaJLUt4S0kXK6nFY5K7+w=</DigestValue>
+				</Reference>
+			</SignedInfo>
+			<SignatureValue>ecSJpGGSvZavhyhl49A/AMVu4TFS9+oOsHN1aKRmCtm4ANPDME71J5hBPT09D5NrKRKDi8FpVZ9k/L+UwJ3nUn0vsW7qtWJtFtblcKVFyv8Hh6iaz66ke5/GDttvB8Uqn5HCiIZ9ULpcyCOULzljVyyb2fGEAI+oy000bQdWhDTKu9eQ+HcEJhzEL2ilKE17HWA8Mna2BEJ5cfs2M5d8OaOhYc7m8HSuxZVdrVkZOjLlM8qaWI4JPaM8Hh8FS4IgjKez7NGGXe4vJ3NQcFMUGD2EHaSyfNa1JD3LwA9FsRuHMp8F6JTq0Tirsg8syuQ8yNwlhB73D41wtMFuertekg==
+			</SignatureValue>
+			<KeyInfo>
+				<KeyValue>
+					<RSAKeyValue>
+						<Modulus>jXS+2JTi8M7JYwK8w13/u2Hbgwj4uJfBna4w4ACO2DRlzgBMzc17Cuj633qB7q2YZLTcfkNR3dncEzmJ04jbnah9woC/pWwFSJi+JQQ6vzHWrua5ZSrUXjLRp9sJOjtiXJnRID95Sq9PoBRX0XPAKOrTVIiKQ4aL9j1FIzedQg3IcegMRAHjVElCAye4Ym5tVYKNGXBTKrxs+7eiUpFMdrolIQbkUc93oB83/KTLtpfJmvypKitS3fPKuO/3Sh5TfVKCIw3XLmHlWg5PTib/VhTJQuPrwGyFh1cdwBc00XoTx2gWl2McgD/7KiKc38j4HYlURFTVz/C/QSYrM9xDkQ==
+						</Modulus>
+						<Exponent>AQAB</Exponent>
+					</RSAKeyValue>
+				</KeyValue>
+			</KeyInfo>
+		</Signature>
+		<saml2:Subject>
+			<saml2:NameID
+				Format="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName">C=US,S=Texas,L=Frisco,O=CorepointHealth,OU=CorepointIntegrationEngine,CN=communityexchange.corepointhealth.com
+			</saml2:NameID>
+			<saml2:SubjectConfirmation
+				Method="urn:oasis:names:tc:SAML:2.0:cm:holder-of-key">
+				<saml2:SubjectConfirmationData
+					xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+					<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+						<KeyValue>
+							<RSAKeyValue>
+								<Modulus>jXS+2JTi8M7JYwK8w13/u2Hbgwj4uJfBna4w4ACO2DRlzgBMzc17Cuj633qB7q2YZLTcfkNR3dncEzmJ04jbnah9woC/pWwFSJi+JQQ6vzHWrua5ZSrUXjLRp9sJOjtiXJnRID95Sq9PoBRX0XPAKOrTVIiKQ4aL9j1FIzedQg3IcegMRAHjVElCAye4Ym5tVYKNGXBTKrxs+7eiUpFMdrolIQbkUc93oB83/KTLtpfJmvypKitS3fPKuO/3Sh5TfVKCIw3XLmHlWg5PTib/VhTJQuPrwGyFh1cdwBc00XoTx2gWl2McgD/7KiKc38j4HYlURFTVz/C/QSYrM9xDkQ==
+								</Modulus>
+								<Exponent>AQAB</Exponent>
+							</RSAKeyValue>
+						</KeyValue>
+					</KeyInfo>
+				</saml2:SubjectConfirmationData>
+			</saml2:SubjectConfirmation>
+		</saml2:Subject>
+		<saml2:AuthnStatement AuthnInstant="2014-02-04T18:03:31Z"
+			SessionIndex="123456">
+			<saml2:AuthnContext>
+				<saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:X509
+				</saml2:AuthnContextClassRef>
+			</saml2:AuthnContext>
+		</saml2:AuthnStatement>
+		<saml2:AttributeStatement>
+			<saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:subject-id">
+				<saml2:AttributeValue>Adam Everyman</saml2:AttributeValue>
+			</saml2:Attribute>
+			<saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:organization">
+				<saml2:AttributeValue>1.1.1.1.1.1.1.1</saml2:AttributeValue>
+			</saml2:Attribute>
+			<saml2:Attribute
+				Name="urn:oasis:names:tc:xspa:1.0:subject:organization-id">
+				<saml2:AttributeValue>urn:oid:1.1.1.1.1.1.1.1</saml2:AttributeValue>
+			</saml2:Attribute>
+			<saml2:Attribute Name="urn:nhin:names:saml:homeCommunityId">
+				<saml2:AttributeValue>urn:oid:1.1.1.1.1.1.1.1</saml2:AttributeValue>
+			</saml2:Attribute>
+			<saml2:Attribute Name="urn:oasis:names:tc:xacml:2.0:subject:role">
+				<saml2:AttributeValue>
+					<hl7:Role code="46255001" codeSystem="2.16.840.1.113883.6.96"
+						codeSystemName="SNOMED_CT" displayName="Pharmacist" xsi:type="hl7:CE"
+						xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+				</saml2:AttributeValue>
+			</saml2:Attribute>
+			<saml2:Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:purposeofuse">
+				<saml2:AttributeValue>
+					<PurposeOfUse code="TREATMENT" codeSystem="2.16.840.1.113883.3.18.7.1"
+						codeSystemName="nhin-purpose" displayName="Treatment" xsi:type="CE"
+						xmlns="urn:hl7-org:v3" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+				</saml2:AttributeValue>
+			</saml2:Attribute>
+			<saml2:Attribute Name="urn:oasis:names:tc:xspa:2.0:subject:npi">
+				<saml2:AttributeValue>1234567890</saml2:AttributeValue>
+			</saml2:Attribute>
+		</saml2:AttributeStatement>
+	</saml2:Assertion>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<Reference URI="#_0">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+					<Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+				<DigestValue>n2mNz70l0tWZWqQdlYHBt0F9YhE=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>KjxETUjBgD2Tg48WrhjnVQebNhET1ggrvjUSipFF9P4yQynCDY/G5gKy7DpRinT/QZw2AGJPDaqW5DCmzf5J18YDnQirN4cvn3hZKd0F/Cbzq4CJQusIEdqZuVOHnQtjx7wEK14JbJtAs579rsUWMWeWth+EGH/MPKf73ZWZ3++27F1/7NonKUVkOJrhn+PMKTY/ZPnf83DW4Vc1qlzqWTb5bZ4GeyFiocn+OmxdzHK1p/o+RSW7ILbPI9hr/KaWgnQDCaDUPLjlDis31MP2uZYmAmTRYNIpKa0Q3cL6YOikpmAeYsDpGDlKugiWsUY6zRIDdfsS1bp5firOBNdGyw==
+		</SignatureValue>
+		<KeyInfo>
+			<KeyValue>
+				<RSAKeyValue>
+					<Modulus>jXS+2JTi8M7JYwK8w13/u2Hbgwj4uJfBna4w4ACO2DRlzgBMzc17Cuj633qB7q2YZLTcfkNR3dncEzmJ04jbnah9woC/pWwFSJi+JQQ6vzHWrua5ZSrUXjLRp9sJOjtiXJnRID95Sq9PoBRX0XPAKOrTVIiKQ4aL9j1FIzedQg3IcegMRAHjVElCAye4Ym5tVYKNGXBTKrxs+7eiUpFMdrolIQbkUc93oB83/KTLtpfJmvypKitS3fPKuO/3Sh5TfVKCIw3XLmHlWg5PTib/VhTJQuPrwGyFh1cdwBc00XoTx2gWl2McgD/7KiKc38j4HYlURFTVz/C/QSYrM9xDkQ==
+					</Modulus>
+					<Exponent>AQAB</Exponent>
+				</RSAKeyValue>
+			</KeyValue>
+		</KeyInfo>
+	</Signature>
+</Security>
+

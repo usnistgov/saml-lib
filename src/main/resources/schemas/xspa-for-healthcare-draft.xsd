@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="urn:oasis:names:tc:xspa:1.0"
+    elementFormDefault="qualified" xmlns:ns1="urn:oasis:names:tc:xacml:1.0:context" xmlns:ns3="urn:oasis:names:tc:xacml:1.0:policy" xmlns:tns="urn:oasis:names:tc:xspa:1.0">
+    <xsd:import schemaLocation="xacml-core-2.0-policy-schema-cd.xsd" namespace="urn:oasis:names:tc:xacml:1.0:context"/>
+    <xsd:import schemaLocation="xacml-core-2.0-context-schema-cd.xsd" namespace="urn:oasis:names:tc:xacml:1.0:policy"/>
+    <xsd:simpleType name="OrganizationType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:complexType name="OrganizationIDType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:anyURI"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="PermissionType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="RoleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PurposeOfUseType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="TREATMENT"/>
+            <xsd:enumeration value="PAYMENT"/>
+            <xsd:enumeration value="OPERATIONS"/>
+            <xsd:enumeration value="EMERGENCY"/>
+            <xsd:enumeration value="SYSADMIN"/>
+            <xsd:enumeration value="RESEARCH"/>
+            <xsd:enumeration value="MARKETING"/>
+            <xsd:enumeration value="REQUEST"/>
+            <xsd:enumeration value="PUBLICHEALTH"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="HL7ResourceType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="LocalityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="NPIType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:element name="organization-id" type="tns:OrganizationIDType"></xsd:element>
+    <xsd:element name="organization" type="tns:OrganizationType"></xsd:element>
+    <xsd:element name="permission" type="tns:PermissionType"></xsd:element>
+    <xsd:element name="purposeofuse" type="tns:PurposeOfUseType"></xsd:element>
+    <xsd:element name="type" type="tns:HL7ResourceType"></xsd:element>
+    <xsd:element name="locality" type="tns:LocalityType"></xsd:element>
+    <xsd:element name="npi" type="tns:NPIType"></xsd:element>
+    <xsd:simpleType name="ResourceIDType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:element name="resource-id" type="tns:ResourceIDType"></xsd:element>
+    <xsd:simpleType name="FunctionalRoleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:element name="functional-role" type="tns:FunctionalRoleType"></xsd:element>
+    <xsd:element name="subject">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:organization"/>
+                <xsd:element ref="tns:organization-id"/>
+                <xsd:element name="role">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string"/>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element ref="tns:functional-role"/>
+                <xsd:element ref="tns:hl7"/>
+                <xsd:element ref="tns:purposeofuse"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="resource">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:hl7"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="environment">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:locality"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="hl7">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:permission"/>
+                <xsd:element ref="tns:type" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

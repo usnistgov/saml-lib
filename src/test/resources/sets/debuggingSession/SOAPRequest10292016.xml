@@ -1,0 +1,139 @@
+<Security xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+    <u:Timestamp u:Id="_0"
+                 xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+        <u:Created>2015-10-28T14:19:02.709Z</u:Created>
+        <u:Expires>2015-10-28T14:24:02.709Z</u:Expires>
+    </u:Timestamp>
+    <Assertion ID="_0795e3c9-ff49-405e-9bc5-6bc643a2cce8" IssueInstant="2015-10-28T14:19:02.694Z" Version="2.0"
+               xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+        <Issuer Format="urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName">Allscripts IHE
+            STS
+        </Issuer>
+        <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:SignedInfo>
+                <ds:CanonicalizationMethod
+                        Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:CanonicalizationMethod>
+                <ds:SignatureMethod
+                        Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+                <ds:Reference URI="#_0795e3c9-ff49-405e-9bc5-6bc643a2cce8">
+                    <ds:Transforms>
+                        <ds:Transform
+                                Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+                        <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+                    </ds:Transforms>
+                    <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+                    <ds:DigestValue>8FSSYzW/Cu9+bWNu8DAMv45nezss0VDnGPodeUA1Tfs=</ds:DigestValue>
+                </ds:Reference>
+            </ds:SignedInfo>
+            <ds:SignatureValue>
+                FMswFbg/AabTrOjbHvCJJQJIYPhI+/86YTQN5znfn6o9BQ8E5mz7T926sLuUivQs3C967fl1XzgshQ2qgMjV/cRKKFuEBVdY66OyC2kekK6anGDDP1Hf1LvRVVeaW3tIlwXZHypjyaaOylgD455GWThUoYdlT/Vfk4ijSOofPXTFujq0FeGf9OBFjwVrleAOhOyXFhccFoP8Wy93MyD6wYBBvmMIrdzQilY55cy1WN/ArF3zgaRH5KZnDfSz9i1EPaakOhe+JoH6mwiT7TvNwNf95tipY+lO6xm9TUaP+W5GBcsWhN3juNpTMBOqh4dP5cVzNKv59GIuK8plD9lCjQ==
+            </ds:SignatureValue>
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <KeyValue>
+                    <RSAKeyValue>
+                        <Modulus>
+                            2kUArhFnRE+a0oof35YUv0Pc8w+UHox/PlTxzDnp86eyiLggHj76egrVbtV6TpYXw783JUQb+NiKxm0V/f6DIeqFWvCeHfzFJaWntNwAjOULY3z0n4T5gJuHpk3/JtefBXBm2m5zW4OhvijMfU228oQ5kJDpuEmkcSgmyZwyPwbJZlLAS3agrFvMu+r7qU4O6imaCAoTt/QYHIo2TLKpprXSOFrszwJDz3I5XTGaE+peBlQueFg5XvlAlARqDfq3yCcP5Mlel1Xv6kFIv/0LBMCZ1U8zMgVQsKOGgnSXCGgyq+77nvS+MPSBc71jkSWh4FnxDFTlL1j1iGdH1BIkWQ==
+                        </Modulus>
+                        <Exponent>AQAB</Exponent>
+                    </RSAKeyValue>
+                </KeyValue>
+            </KeyInfo>
+        </ds:Signature>
+        <Subject>
+            <NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">Joe Tester</NameID>
+            <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:holder-of-key">
+                <SubjectConfirmationData a:type="KeyInfoConfirmationDataType"
+                                         xmlns:a="http://www.w3.org/2001/XMLSchema-instance">
+                    <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                        <KeyValue>
+                            <RSAKeyValue>
+                                <Modulus>
+                                    2kUArhFnRE+a0oof35YUv0Pc8w+UHox/PlTxzDnp86eyiLggHj76egrVbtV6TpYXw783JUQb+NiKxm0V/f6DIeqFWvCeHfzFJaWntNwAjOULY3z0n4T5gJuHpk3/JtefBXBm2m5zW4OhvijMfU228oQ5kJDpuEmkcSgmyZwyPwbJZlLAS3agrFvMu+r7qU4O6imaCAoTt/QYHIo2TLKpprXSOFrszwJDz3I5XTGaE+peBlQueFg5XvlAlARqDfq3yCcP5Mlel1Xv6kFIv/0LBMCZ1U8zMgVQsKOGgnSXCGgyq+77nvS+MPSBc71jkSWh4FnxDFTlL1j1iGdH1BIkWQ==
+                                </Modulus>
+                                <Exponent>AQAB</Exponent>
+                            </RSAKeyValue>
+                        </KeyValue>
+                    </KeyInfo>
+                </SubjectConfirmationData>
+            </SubjectConfirmation>
+        </Subject>
+        <Conditions NotBefore="2015-10-28T14:14:02.691Z" NotOnOrAfter="2015-10-28T15:24:02.691Z"></Conditions>
+        <AttributeStatement>
+            <Attribute Name="UserName" NameFormat="http://www.hhs.gov/healthit/nhin">
+                <AttributeValue>Joe Tester</AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:organization-id">
+                <AttributeValue>urn:oid:1.3.6.1.4.1.22812.4.13.610</AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:purposeofuse">
+                <AttributeValue>
+                    <PurposeOfUse xsi:type="CE" code="TREATMENT" codeSystem="2.16.840.1.113883.3.18.7.1"
+                                  codeSystemName="nhin-purpose" xmlns="urn:hl7-org:v3"
+                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></PurposeOfUse>
+                </AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:oasis:names:tc:xacml:2.0:subject:role">
+                <AttributeValue>
+                    <Role xsi:type="CE" code="22515006" codeSystem="2.16.840.1.113883.6.96"
+                          codeSystemName="SNOMED_CT" xmlns="urn:hl7-org:v3"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Role>
+                </AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:nhin:names:saml:homeCommunityId">
+                <AttributeValue>urn:oid:1.3.6.1.4.1.22812.4.13.610</AttributeValue>
+            </Attribute>
+            <Attribute Name="Oid">
+                <AttributeValue>1.3.6.1.4.1.22812.4.5656.0</AttributeValue>
+            </Attribute>
+            <Attribute Name="Community">
+                <AttributeValue>DGI TTT</AttributeValue>
+            </Attribute>
+            <Attribute Name="Direction">
+                <AttributeValue>Outbound</AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:organization">
+                <AttributeValue>Allscripts ProEHR 13.0</AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:oasis:names:tc:xacml:2.0:resource:resource-id">
+                <AttributeValue>123^^^&amp;1.2.3&amp;ISO</AttributeValue>
+            </Attribute>
+            <Attribute Name="urn:oasis:names:tc:xspa:1.0:subject:subject-id">
+                <AttributeValue>Joe Tester</AttributeValue>
+            </Attribute>
+        </AttributeStatement>
+        <AuthnStatement AuthnInstant="2015-10-28T14:19:02.691Z">
+            <AuthnContext>
+                <AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</AuthnContextClassRef>
+            </AuthnContext>
+        </AuthnStatement>
+    </Assertion>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod
+                    Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></CanonicalizationMethod>
+            <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></Transform>
+                    <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></Transform>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+                <DigestValue>Icc4y8tq1k+e4CwyZjZiLRuoYOmaeOnaOd9WzfSC8VU=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>
+            nEU3QcAsZXe4T+w4KRmN1kUtoA8ukBQwYLLPJyzcxa9RTULIml18N9jCLb8GpoTz4JahU5djWwPz5cy1BfbP+RibA7ClH2qZkXvX3Ylq2P6vx03grYTDAN/w+5w9KnQ1R7ewBXXPTwzP9oIPDB9FRymGe1gJFzNdwlDyk8o4F7aPBLRwqueqQia/Y8wCv/7heJEAf71DGU8O434oel7TxN6ZHX1Kd/cErvETzjJuoycnYDo5ywRNnxstumlQAZyp0rHFMyJMGPjdeHGPJE6kvzxT7fu5MuGAvB+kwPoiznry6Jn/ePp+L2XFoboEP4kihn3ETPSWx4XsG8DI0nejXg==
+        </SignatureValue>
+        <KeyInfo>
+            <KeyValue>
+                <RSAKeyValue>
+                    <Modulus>
+                        2kUArhFnRE+a0oof35YUv0Pc8w+UHox/PlTxzDnp86eyiLggHj76egrVbtV6TpYXw783JUQb+NiKxm0V/f6DIeqFWvCeHfzFJaWntNwAjOULY3z0n4T5gJuHpk3/JtefBXBm2m5zW4OhvijMfU228oQ5kJDpuEmkcSgmyZwyPwbJZlLAS3agrFvMu+r7qU4O6imaCAoTt/QYHIo2TLKpprXSOFrszwJDz3I5XTGaE+peBlQueFg5XvlAlARqDfq3yCcP5Mlel1Xv6kFIv/0LBMCZ1U8zMgVQsKOGgnSXCGgyq+77nvS+MPSBc71jkSWh4FnxDFTlL1j1iGdH1BIkWQ==
+                    </Modulus>
+                    <Exponent>AQAB</Exponent>
+                </RSAKeyValue>
+            </KeyValue>
+        </KeyInfo>
+    </Signature>
+</Security>
+
