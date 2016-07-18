@@ -2,16 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>gov.nist.hit.ds</groupId>
-	<artifactId>wsseTool</artifactId>
-	<version>3.0.10</version>
+	<groupId>gov.nist.toolkit</groupId>
+	<artifactId>toolkit2</artifactId>
+	<version>wsseTool</version>
 
 
-	<parent>
+	<!-- <parent>
 		<groupId>gov.nist.toolkit</groupId>
 		<artifactId>toolkit2</artifactId>
 		<version>v2-maven-alpha</version>
-	</parent>
+	</parent> -->
 
 	<distributionManagement>
 		<repository>
@@ -28,10 +28,19 @@
 
 
 	<repositories>
-		<repository>
+		<!-- <repository>
 			<id>shibboleth</id>
 			<url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
+		</repository> -->
+		<!-- <repository>
+			<id>maven</id>
+			<url>http://repo1.maven.org/maven/</url>
 		</repository>
+		<repository>
+			<id>internal</id>
+			<url>http://vm-070.nist.gov:8081/nexus/content/repositories/releases/</url>
+		</repository> -->
+		
 	</repositories>
 
 
@@ -39,6 +48,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.11</version>
 		</dependency>
 
 		<dependency>
