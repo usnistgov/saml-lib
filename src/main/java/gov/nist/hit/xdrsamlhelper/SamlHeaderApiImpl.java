@@ -78,7 +78,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			            .parse(new InputSource(new StringReader(document)));
 			
 			 System.out.println(printXML(doc, "\t"));
-			 System.in.read();
+			 //System.in.read();
 			context.setKeystore(new KeystoreAccess(keystoreFileWithPath, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
 			new WsseHeaderValidator().validate(doc.getDocumentElement(),context);
@@ -108,9 +108,9 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 	
 	public static void main(String [] args) throws SamlHeaderException {
 		String s = "";
-		SamlHeaderApiImpl saml = new SamlHeaderApiImpl();
-		System.out.println(s = saml.generate("abcd", "src/test/resources/keystore/toolkit/keystore", "1", "changeit", "changeit"));
-		saml.validate(s, "abcd", "src/test/resources/keystore/toolkit/keystore", "1", "changeit", "changeit");
+		SamlHeaderApi saml = SamlHeaderApi.getInstance();
+		System.out.println(s = saml.generate("abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit"));
+		saml.validate(s, "abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit");
 	}
 
 }
