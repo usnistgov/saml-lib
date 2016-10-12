@@ -10,7 +10,11 @@ import gov.nist.hit.ds.wsseTool.api.exceptions.ValidationException;
 import gov.nist.hit.ds.wsseTool.generation.opensaml.OpenSamlWsseSecurityGenerator;
 import gov.nist.hit.ds.wsseTool.util.MyXmlUtils;
 import gov.nist.hit.ds.wsseTool.validation.WsseHeaderValidator;
+import gov.nist.hit.xdrsamlhelper.SamlHeaderApi.SamlHeaderException;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.security.KeyStoreException;
 
@@ -71,7 +75,9 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 	    }
 	    return(print);
 	}
-	public void validate(String document, String patientId, String keystoreFileWithPath, String alias, String keyStorePass, String privateKeyPass) throws SamlHeaderException {
+	
+	
+	public void validate(String document, String patientId, InputStream is, String alias, String keyStorePass, String privateKeyPass) throws SamlHeaderException {
 		GenContext context = ContextFactory.getInstance();
 		try {
 			 Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
@@ -79,7 +85,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			
 			 System.out.println(printXML(doc, "\t"));
 			 //System.in.read();
-			context.setKeystore(new KeystoreAccess(keystoreFileWithPath, keyStorePass, alias, privateKeyPass));
+			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
 			new WsseHeaderValidator().validate(doc.getDocumentElement(),context);
 		} catch (Exception e) {
@@ -89,12 +95,16 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		
 	}
 	
-	public String generate(String patientId, String keystoreFileWithPath, String alias, String keyStorePass, String privateKeyPass) throws SamlHeaderException {
+	public SamlHeaderException generateExceptionWrapper(String s, Exception e, boolean isValidation) {
+		return new SamlHeaderExceptionImpl(isValidation ? (ValidationException)e : new ValidationException(e));
+	}
+
+	public String generate(String patientId, InputStream is, String alias, String keyStorePass, String privateKeyPass) throws SamlHeaderException {
 		GenContext context = ContextFactory.getInstance();
 		Document doc = null;
 		
 		try {
-			context.setKeystore(new KeystoreAccess(keystoreFileWithPath, keyStorePass, alias, privateKeyPass));
+			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
 			doc = new OpenSamlWsseSecurityGenerator().generateWsseHeader(context);
 			//new WsseHeaderValidator().validate(doc.getDocumentElement(),context);
@@ -107,10 +117,33 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 	}
 	
 	public static void main(String [] args) throws SamlHeaderException {
+		 //test1();
+		 test2();
+	}
+
+    public static void test1() throws SamlHeaderException {
 		String s = "";
 		SamlHeaderApi saml = SamlHeaderApi.getInstance();
 		System.out.println(s = saml.generate("abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit"));
 		saml.validate(s, "abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit");
-	}
+    }
+
+    public static void test2() throws SamlHeaderException {
+		String s = "";
+		SamlHeaderApi saml = SamlHeaderApi.getInstance();
+		FileInputStream is = null;
+		try {
+			is = new FileInputStream("src/test/resources/keystore/keystore");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Read file src/test/resources/keystore/keystore  " + (is != null));
+		
+		System.out.println("This is the header: \n" + (s = saml.generate("abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit")));
+		saml.validate(s, "abcd", is, "hit-testing.nist.gov", "changeit", "changeit");
+    }
+    
+
 
 }

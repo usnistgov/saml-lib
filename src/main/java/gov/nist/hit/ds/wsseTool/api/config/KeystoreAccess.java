@@ -3,6 +3,7 @@ package gov.nist.hit.ds.wsseTool.api.config;
 import gov.nist.hit.ds.wsseTool.api.WsseHeaderGenerator;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.security.KeyPair;
 import java.security.KeyStore;
@@ -33,16 +34,31 @@ public class KeystoreAccess {
 	public PublicKey publicKey;
 	public Certificate certificate;
 
+	public KeystoreAccess(InputStream is, String storePass, String privateKeyAlias, String privateKeyPass)
+			throws KeyStoreException {
+		loadKeyStoreAccess(is, storePass, privateKeyAlias, privateKeyPass);
+	}	
+
 	public KeystoreAccess(String storePath, String storePass, String privateKeyAlias, String privateKeyPass)
+			throws KeyStoreException {
+		try {
+			FileInputStream is = new FileInputStream(storePath);
+			loadKeyStoreAccess(is, storePass, privateKeyAlias, privateKeyPass);
+			log.info("keystore successfully loaded from :" + storePath);
+		} catch (FileNotFoundException e) {
+			throw new KeyStoreException("cannot properly access keystore located at : " + storePath, e);
+		}
+	}
+
+	public void loadKeyStoreAccess(InputStream is, String storePass, String privateKeyAlias, String privateKeyPass)
 			throws KeyStoreException {
 
 		try {
-			keystore = loadKeyStore(storePath, storePass);
+			keystore = loadKeyStore(is, storePass);
 			loadKeyStoreInfo(privateKeyAlias, privateKeyPass);
-			
-			log.info("keystore successfully loaded from :" + storePath);
+			log.info("keystore successfully loaded!");
 		} catch (KeyStoreException e) {
-			throw new KeyStoreException("cannot properly access keystore located at : " + storePath, e);
+			throw new KeyStoreException("cannot properly access keystore");
 		}
 	}
 
@@ -71,9 +87,18 @@ public class KeystoreAccess {
 
 	private KeyStore loadKeyStore(String store, String sPass) throws KeyStoreException {
 		try {
+			return loadKeyStore(new FileInputStream(store), sPass);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			throw new KeyStoreException("cannot load keystore with pass : " + sPass, e);
+		}
+	}
+	
+	private KeyStore loadKeyStore(InputStream is, String sPass) throws KeyStoreException {
+		try {
 			KeyStore  mykeystore = KeyStore.getInstance("JKS");
 			//try first on the classpath
-			InputStream is = new FileInputStream(store);
+			//InputStream is = new FileInputStream(store);
 			mykeystore.load(is, sPass.toCharArray());
 			is.close();
 			return mykeystore;
