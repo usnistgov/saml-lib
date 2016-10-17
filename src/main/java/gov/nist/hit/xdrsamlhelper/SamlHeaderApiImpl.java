@@ -32,103 +32,127 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			super(e);
 			isValidation = true;
 		}
+
 		SamlHeaderExceptionImpl(GenerationException e) {
 			super(e);
 			isGeneration = true;
 		}
-		
+
 		private boolean isGeneration = false;
 		private boolean isValidation = false;
-		
-        public  boolean isGenerationException() { return isGeneration; }
-        public  boolean isValidationException() { return isValidation; }
-		
-		public String getHeaderExceptionMessage() { return getMessage(); }
+
+		public boolean isGenerationException() {
+			return isGeneration;
+		}
+
+		public boolean isValidationException() {
+			return isValidation;
+		}
+
+		public String getHeaderExceptionMessage() {
+			return getMessage();
+		}
+
 		/* future */
-		public String getHeaderExceptionMessage(String type)  { return getMessage(); }
+		public String getHeaderExceptionMessage(String type) {
+			return getMessage();
+		}
 
 	}
 
 	private static boolean skipNL;
+
 	private static String printXML(Node rootNode, String tab) {
-	    String print = "";
-	    if(rootNode.getNodeType()==Node.ELEMENT_NODE) {
-	        print += "\n"+tab+"<"+rootNode.getNodeName()+">";
-	    }
-	    NodeList nl = rootNode.getChildNodes();
-	    if(nl.getLength()>0) {
-	        for (int i = 0; i < nl.getLength(); i++) {
-	            print += printXML(nl.item(i), tab+"  ");    // \t
-	        }
-	    } else {
-	        if(rootNode.getNodeValue()!=null) {
-	            print = rootNode.getNodeValue();
-	        }
-	        skipNL = true;
-	    }
-	    if(rootNode.getNodeType()==Node.ELEMENT_NODE) {
-	        if(!skipNL) {
-	            print += "\n"+tab;
-	        }
-	        skipNL = false;
-	        print += "</"+rootNode.getNodeName()+">";
-	    }
-	    return(print);
-	}
-	
-	
-	public void validate(String document, String patientId, InputStream is, String alias, String keyStorePass, String privateKeyPass) throws SamlHeaderException {
-		GenContext context = ContextFactory.getInstance();
-		try {
-			 Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-			            .parse(new InputSource(new StringReader(document)));
-			
-			 System.out.println(printXML(doc, "\t"));
-			 //System.in.read();
-			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
-			context.setParam("patientId", patientId);
-			new WsseHeaderValidator().validate(doc.getDocumentElement(),context);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			throw new SamlHeaderExceptionImpl(e instanceof ValidationException ? (ValidationException)e : new ValidationException(e));
+		String print = "";
+		if (rootNode.getNodeType() == Node.ELEMENT_NODE) {
+			print += "\n" + tab + "<" + rootNode.getNodeName() + ">";
 		}
-		
-	}
-	
-	public SamlHeaderException generateExceptionWrapper(String s, Exception e, boolean isValidation) {
-		return new SamlHeaderExceptionImpl(isValidation ? (ValidationException)e : new ValidationException(e));
+		NodeList nl = rootNode.getChildNodes();
+		if (nl.getLength() > 0) {
+			for (int i = 0; i < nl.getLength(); i++) {
+				print += printXML(nl.item(i), tab + "  "); // \t
+			}
+		} else {
+			if (rootNode.getNodeValue() != null) {
+				print = rootNode.getNodeValue();
+			}
+			skipNL = true;
+		}
+		if (rootNode.getNodeType() == Node.ELEMENT_NODE) {
+			if (!skipNL) {
+				print += "\n" + tab;
+			}
+			skipNL = false;
+			print += "</" + rootNode.getNodeName() + ">";
+		}
+		return (print);
 	}
 
-	public String generate(String patientId, InputStream is, String alias, String keyStorePass, String privateKeyPass) throws SamlHeaderException {
+	public static Document stringToDom(String xmlSource) throws Exception {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setIgnoringElementContentWhitespace(true);
+		factory.setNamespaceAware(true);
+		return factory.newDocumentBuilder().parse(new InputSource(new StringReader(xmlSource)));
+	}
+
+	public void validate(String document, String patientId, InputStream is, String alias, String keyStorePass,
+			String privateKeyPass) throws SamlHeaderException {
+		GenContext context = ContextFactory.getInstance();
+		try {
+            Document doc = stringToDom(document);
+
+			//System.out.println(printXML(doc, "\t"));
+			// System.in.read();
+			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
+			context.setParam("patientId", patientId);
+			new WsseHeaderValidator().validate(doc.getDocumentElement(), context);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new SamlHeaderExceptionImpl(
+					e instanceof ValidationException ? (ValidationException) e : new ValidationException(e));
+		}
+
+	}
+
+	public SamlHeaderException generateExceptionWrapper(String s, Exception e, boolean isValidation) {
+		return new SamlHeaderExceptionImpl(isValidation ? (ValidationException) e : new ValidationException(e));
+	}
+
+	public String generate(String patientId, InputStream is, String alias, String keyStorePass, String privateKeyPass)
+			throws SamlHeaderException {
 		GenContext context = ContextFactory.getInstance();
 		Document doc = null;
-		
+
 		try {
 			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
 			doc = new OpenSamlWsseSecurityGenerator().generateWsseHeader(context);
-			//new WsseHeaderValidator().validate(doc.getDocumentElement(),context);
+			// new
+			// WsseHeaderValidator().validate(doc.getDocumentElement(),context);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			throw new SamlHeaderExceptionImpl(e instanceof GenerationException ? (GenerationException)e : new GenerationException(e));
+			throw new SamlHeaderExceptionImpl(
+					e instanceof GenerationException ? (GenerationException) e : new GenerationException(e));
 		}
 		return MyXmlUtils.DomToString(doc);
-		
-	}
-	
-	public static void main(String [] args) throws SamlHeaderException {
-		 //test1();
-		 test2();
+
 	}
 
-    public static void test1() throws SamlHeaderException {
+	public static void main(String[] args) throws SamlHeaderException {
+		// test1();
+		test2();
+	}
+
+	public static void test1() throws SamlHeaderException {
 		String s = "";
 		SamlHeaderApi saml = SamlHeaderApi.getInstance();
-		System.out.println(s = saml.generate("abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit"));
-		saml.validate(s, "abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit");
-    }
+		System.out.println(s = saml.generate("abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov",
+				"changeit", "changeit"));
+		saml.validate(s, "abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit",
+				"changeit");
+	}
 
-    public static void test2() throws SamlHeaderException {
+	public static void test2() throws SamlHeaderException {
 		String s = "";
 		SamlHeaderApi saml = SamlHeaderApi.getInstance();
 		FileInputStream is = null;
@@ -139,11 +163,10 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			e.printStackTrace();
 		}
 		System.out.println("Read file src/test/resources/keystore/keystore  " + (is != null));
-		
-		System.out.println("This is the header: \n" + (s = saml.generate("abcd", "src/test/resources/keystore/keystore", "hit-testing.nist.gov", "changeit", "changeit")));
-		saml.validate(s, "abcd", is, "hit-testing.nist.gov", "changeit", "changeit");
-    }
-    
 
+		System.out.println("This is the header: \n" + (s = saml.generate("abcd", "src/test/resources/keystore/keystore",
+				"hit-testing.nist.gov", "changeit", "changeit")));
+		saml.validate(s, "abcd", is, "hit-testing.nist.gov", "changeit", "changeit");
+	}
 
 }
