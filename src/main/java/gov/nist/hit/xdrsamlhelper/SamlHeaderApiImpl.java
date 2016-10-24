@@ -11,12 +11,17 @@ import gov.nist.hit.ds.wsseTool.generation.opensaml.OpenSamlWsseSecurityGenerato
 import gov.nist.hit.ds.wsseTool.util.MyXmlUtils;
 import gov.nist.hit.ds.wsseTool.validation.WsseHeaderValidator;
 import gov.nist.hit.xdrsamlhelper.SamlHeaderApi.SamlHeaderException;
+import org.apache.log4j.AppenderSkeleton;
+import org.apache.log4j.Level;
+import org.apache.log4j.spi.LoggingEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.security.KeyStoreException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -94,13 +99,53 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		factory.setNamespaceAware(true);
 		return factory.newDocumentBuilder().parse(new InputSource(new StringReader(xmlSource)));
 	}
+	
+	
+	public/* static */class AppenderForErrorRecorder extends AppenderSkeleton {
+		
+		SamlHeaderValidationResults results;
+		
+		public AppenderForErrorRecorder(){
+			results = new SamlHeaderValidationResults();
+		}
+		
+		public SamlHeaderValidationResults getResults() {
+			return results;
+		}
+		
+		@Override
+		protected void append(LoggingEvent event) {
+			
+			if (event.getLevel() == Level.ERROR) {
+				results.errors.add(/*XdsErrorCode.Code.NoCode,*/event.getRenderedMessage()/*,event.getLevel().toString(),event.getLoggerName()*/);
+			}
+			if (event.getLevel() == Level.WARN) {
+				results.warnings.add(event.getRenderedMessage());
+			}
+			if (event.getLevel() == Level.INFO) {
+				results.details.add(event.getRenderedMessage());
+			}
+		}
 
-	public void validate(String document, String patientId, InputStream is, String alias, String keyStorePass,
+		public void close() {
+		}
+
+		public boolean requiresLayout() {
+			return false;
+		}
+
+	}
+
+	public SamlHeaderValidationResults validate(String document, String patientId, InputStream is, String alias, String keyStorePass,
 			String privateKeyPass) throws SamlHeaderException {
 		GenContext context = ContextFactory.getInstance();
+		AppenderForErrorRecorder er = new AppenderForErrorRecorder();
+		
 		try {
             Document doc = stringToDom(document);
-
+        	org.apache.log4j.Logger logMainVal = org.apache.log4j.Logger
+					.getLogger(WsseHeaderValidator.class);
+        	logMainVal.addAppender(er);
 			//System.out.println(printXML(doc, "\t"));
 			// System.in.read();
 			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
@@ -111,9 +156,12 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			throw new SamlHeaderExceptionImpl(
 					e instanceof ValidationException ? (ValidationException) e : new ValidationException(e));
 		}
-
+		
+		return er.getResults();
 	}
 
+	
+	
 	public SamlHeaderException generateExceptionWrapper(String s, Exception e, boolean isValidation) {
 		return new SamlHeaderExceptionImpl(isValidation ? (ValidationException) e : new ValidationException(e));
 	}
@@ -166,7 +214,33 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 
 		System.out.println("This is the header: \n" + (s = saml.generate("abcd", "src/test/resources/keystore/keystore",
 				"hit-testing.nist.gov", "changeit", "changeit")));
-		saml.validate(s, "abcd", is, "hit-testing.nist.gov", "changeit", "changeit");
-	}
+		
+		SamlHeaderValidationResults res = saml.validate(s, "abcd", is, "hit-testing.nist.gov", "changeit", "changeit");
+		
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("Results ------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+
+
+		System.out.println("Errors: " + res.errors.size());
+		
+		for (String e : res.errors) { System.out.println(e);}
+		System.out.println("-----------------------------------------------------------------------------");
+
+		System.out.println("Warnings: " + res.warnings.size());
+		for (String w : res.warnings) { System.out.println(w);}
+		System.out.println("-----------------------------------------------------------------------------");
+
+		System.out.println("Info: " + res.details.size());
+	
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("End Results ------------------------------------------------------------------------");
+}
 
 }
