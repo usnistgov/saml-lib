@@ -55,6 +55,18 @@ public abstract class SamlHeaderApi {
 	}
 
 	public class SamlHeaderValidationResults {
+		public List<String> getErrors() {
+			return errors;
+		}
+
+		public List<String> getWarnings() {
+			return warnings;
+		}
+
+		public List<String> getDetails() {
+			return details;
+		}
+
 		List<String> errors;
 		List<String> warnings;
 		List<String> details;
