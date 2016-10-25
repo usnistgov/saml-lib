@@ -33,12 +33,12 @@ import org.xml.sax.InputSource;
 
 public class SamlHeaderApiImpl extends SamlHeaderApi {
 	public class SamlHeaderExceptionImpl extends SamlHeaderException {
-		SamlHeaderExceptionImpl(ValidationException e) {
+		protected SamlHeaderExceptionImpl(ValidationException e) {
 			super(e);
 			isValidation = true;
 		}
 
-		SamlHeaderExceptionImpl(GenerationException e) {
+		protected SamlHeaderExceptionImpl(GenerationException e) {
 			super(e);
 			isGeneration = true;
 		}
