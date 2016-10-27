@@ -153,7 +153,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			WsseHeaderValidator validator = new WsseHeaderValidator();
 			
 			validator.validate(doc.getDocumentElement(), context);
-			System.out.println("Validation errors = " + validator.errors.size());
+			//System.out.println("Validation errors = " + validator.errors.size());
 			System.in.read();
 			
 		} catch (Exception e) {
