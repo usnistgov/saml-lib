@@ -54,7 +54,7 @@ public abstract class SamlHeaderApi {
 		public abstract String getHeaderExceptionMessage(String type);
 	}
 
-	public class SamlHeaderValidationResults {
+	public static class SamlHeaderValidationResults {
 		public List<String> getErrors() {
 			return errors;
 		}

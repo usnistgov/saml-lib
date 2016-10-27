@@ -101,7 +101,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 	}
 	
 	
-	public/* static */class AppenderForErrorRecorder extends AppenderSkeleton {
+	public static class AppenderForErrorRecorder extends AppenderSkeleton {
 		
 		SamlHeaderValidationResults results;
 		
@@ -150,7 +150,12 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			// System.in.read();
 			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
-			new WsseHeaderValidator().validate(doc.getDocumentElement(), context);
+			WsseHeaderValidator validator = new WsseHeaderValidator();
+			
+			validator.validate(doc.getDocumentElement(), context);
+			System.out.println("Validation errors = " + validator.errors.size());
+			System.in.read();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new SamlHeaderExceptionImpl(
