@@ -230,7 +230,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		System.out.println("-----------------------------------------------------------------------------");
 
 
-		System.out.println("Errors: " + res.errors.size());
+		//System.out.println("Errors: " + res.errors.size());
 		
 		for (String e : res.errors) { System.out.println(e);}
 		System.out.println("-----------------------------------------------------------------------------");
