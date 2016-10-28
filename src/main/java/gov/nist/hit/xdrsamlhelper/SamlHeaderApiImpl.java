@@ -115,7 +115,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		
 		@Override
 		protected void append(LoggingEvent event) {
-			
+			System.out.println("Saml - appender called!");
 			if (event.getLevel() == Level.ERROR) {
 				results.errors.add(/*XdsErrorCode.Code.NoCode,*/event.getRenderedMessage()/*,event.getLevel().toString(),event.getLoggerName()*/);
 			}
@@ -143,8 +143,12 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		
 		try {
             Document doc = stringToDom(document);
+            org.slf4j.Logger logsl4j =  org.slf4j.LoggerFactory.getLogger(WsseHeaderValidator.class);
+            
+           
         	org.apache.log4j.Logger logMainVal = org.apache.log4j.Logger
 					.getLogger(WsseHeaderValidator.class);
+        	
         	logMainVal.addAppender(er);
 			//System.out.println(printXML(doc, "\t"));
 			// System.in.read();
@@ -153,7 +157,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 			WsseHeaderValidator validator = new WsseHeaderValidator();
 			
 			validator.validate(doc.getDocumentElement(), context);
-			//System.out.println("Validation errors = " + validator.errors.size());
+			System.out.println("Validation errors = " + er.getResults().errors.size());
 			System.in.read();
 			
 		} catch (Exception e) {
@@ -230,7 +234,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		System.out.println("-----------------------------------------------------------------------------");
 
 
-		//System.out.println("Errors: " + res.errors.size());
+		System.out.println("Errors: " + res.errors.size());
 		
 		for (String e : res.errors) { System.out.println(e);}
 		System.out.println("-----------------------------------------------------------------------------");
