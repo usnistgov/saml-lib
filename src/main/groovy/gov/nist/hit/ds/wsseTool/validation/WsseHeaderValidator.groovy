@@ -56,6 +56,8 @@ public class WsseHeaderValidator implements Validator {
 
 	private static final Logger log = LoggerFactory.getLogger(WsseHeaderValidator.class)
 
+	
+	
 	public static void main(String[] args) throws GenerationException, KeyStoreException {
 		String store = "src/test/resources/keystore/keystore"
 		String sPass = "changeit"
@@ -77,6 +79,12 @@ public class WsseHeaderValidator implements Validator {
 		ValidationResult r = doValidation(securityHeader, config, context)
 		TestReporter reporter = new TestReporter();
 		reporter.report(r)
+	}
+
+	public ValidationResult validateWithResults(Element securityHeader, Context context) throws ValidationException {
+		ValConfig config = new ValConfig("2.0")
+		ValidationResult r = doValidation(securityHeader, config, context)
+		return r;
 	}
 
 	public ValidationResult validateAndReport(Element xml, ValConfig config, Context context) throws ValidationException {
@@ -121,6 +129,7 @@ public class WsseHeaderValidator implements Validator {
 		}
 		catch(ParseException e){
 			log.error(e.getMessage());
+			errors.add(e.getMessage());
 			log.warn("problem during parsing but validation will continue so we can report errors properly.");
 		}
 

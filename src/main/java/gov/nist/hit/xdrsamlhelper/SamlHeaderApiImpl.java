@@ -9,14 +9,22 @@ import gov.nist.hit.ds.wsseTool.api.exceptions.GenerationException;
 import gov.nist.hit.ds.wsseTool.api.exceptions.ValidationException;
 import gov.nist.hit.ds.wsseTool.generation.opensaml.OpenSamlWsseSecurityGenerator;
 import gov.nist.hit.ds.wsseTool.util.MyXmlUtils;
+import gov.nist.hit.ds.wsseTool.validation.ValidationResult;
 import gov.nist.hit.ds.wsseTool.validation.WsseHeaderValidator;
+import gov.nist.hit.ds.wsseTool.validation.reporting.AdditionalResult;
 import gov.nist.hit.xdrsamlhelper.SamlHeaderApi.SamlHeaderException;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.Level;
 import org.apache.log4j.spi.LoggingEvent;
+import org.junit.runner.Description;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.security.KeyStoreException;
@@ -32,6 +40,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public class SamlHeaderApiImpl extends SamlHeaderApi {
+	private static final Logger log = LoggerFactory.getLogger(WsseHeaderValidator.class);
+
 	public class SamlHeaderExceptionImpl extends SamlHeaderException {
 		protected SamlHeaderExceptionImpl(ValidationException e) {
 			super(e);
@@ -100,65 +110,61 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		return factory.newDocumentBuilder().parse(new InputSource(new StringReader(xmlSource)));
 	}
 	
-	
-	public static class AppenderForErrorRecorder extends AppenderSkeleton {
+	public void convertResultsObject(ValidationResult r, SamlHeaderValidationResults res){
 		
-		SamlHeaderValidationResults results;
+		Result result = r.getBasicResult();
+		AdditionalResult moreResultInfo = r.getAddResult();
 		
-		public AppenderForErrorRecorder(){
-			results = new SamlHeaderValidationResults();
+		long time = result.getRunTime();
+		int runs = result.getRunCount();
+		int fails = result.getFailureCount();
+		List<Failure> failures = result.getFailures();
+		List<Description> descriptions = moreResultInfo.testsDescriptions;
+		List<Failure> optionalTestsNotRun = moreResultInfo.optionalTestsNotRun;
+
+		String s;
+		log.info(s = "\n Summary: \n"+ runs + " tests runs in " + time + " milliseconds , "
+				+ fails + " have failed, " +
+				moreResultInfo.optionalTestsNotRun.size() + " optional tests not triggered, " +
+				result.getIgnoreCount() + " ignored \n");
+
+		res.details.add(s);
+		log.info("\n Tests run: \n");
+		for (Description d : descriptions) {
+			log.info(d.getDisplayName() +"\n");
 		}
-		
-		public SamlHeaderValidationResults getResults() {
-			return results;
-		}
-		
-		@Override
-		protected void append(LoggingEvent event) {
-			System.out.println("Saml - appender called!");
-			if (event.getLevel() == Level.ERROR) {
-				results.errors.add(/*XdsErrorCode.Code.NoCode,*/event.getRenderedMessage()/*,event.getLevel().toString(),event.getLoggerName()*/);
-			}
-			if (event.getLevel() == Level.WARN) {
-				results.warnings.add(event.getRenderedMessage());
-			}
-			if (event.getLevel() == Level.INFO) {
-				results.details.add(event.getRenderedMessage());
+
+		if(optionalTestsNotRun.size() != 0 ){
+			log.info("\n Optional tests not triggered: \n");
+			for (Failure f : optionalTestsNotRun) {
+				log.warn(s = f.getTestHeader() + " : \n" + f.getMessage() +"\n");
+				res.warnings.add(s);
 			}
 		}
 
-		public void close() {
+		if(fails != 0 ){
+			log.info("\n Failures recorded: \n");
+			for (Failure f : failures) {
+				log.error(s = f.getTestHeader() + " : \n" + f.getMessage() + "\n");
+				res.errors.add(s);
+			}
 		}
-
-		public boolean requiresLayout() {
-			return false;
-		}
-
 	}
 
+	
 	public SamlHeaderValidationResults validate(String document, String patientId, InputStream is, String alias, String keyStorePass,
 			String privateKeyPass) throws SamlHeaderException {
 		GenContext context = ContextFactory.getInstance();
-		AppenderForErrorRecorder er = new AppenderForErrorRecorder();
-		
+		SamlHeaderValidationResults res = new SamlHeaderValidationResults();
 		try {
             Document doc = stringToDom(document);
-            org.slf4j.Logger logsl4j =  org.slf4j.LoggerFactory.getLogger(WsseHeaderValidator.class);
-            
-           
-        	org.apache.log4j.Logger logMainVal = org.apache.log4j.Logger
-					.getLogger(WsseHeaderValidator.class);
-        	
-        	logMainVal.addAppender(er);
-			//System.out.println(printXML(doc, "\t"));
-			// System.in.read();
-			context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
+            context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
 			WsseHeaderValidator validator = new WsseHeaderValidator();
 			
-			validator.validate(doc.getDocumentElement(), context);
-			System.out.println("Validation errors = " + er.getResults().errors.size());
-			System.in.read();
+			ValidationResult r = validator.validateWithResults(doc.getDocumentElement(), context);
+			
+			convertResultsObject(r, res);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -166,7 +172,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 					e instanceof ValidationException ? (ValidationException) e : new ValidationException(e));
 		}
 		
-		return er.getResults();
+		return res;
 	}
 
 	
@@ -195,8 +201,10 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 
 	}
 
-	public static void main(String[] args) throws SamlHeaderException {
+	public static void main(String[] args) throws SamlHeaderException, IOException {
 		// test1();
+		System.out.println("----------------- building directly --------");
+		System.in.read();
 		test2();
 	}
 
