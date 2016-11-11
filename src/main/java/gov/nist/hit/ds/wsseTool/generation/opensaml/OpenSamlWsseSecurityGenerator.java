@@ -99,6 +99,58 @@ public class OpenSamlWsseSecurityGenerator {
 		return securityHeader;
 	}
 
+	
+	
+	public Document generateWsseHeader2(GenContext context, String template) throws GenerationException {
+
+		
+		System.setProperty("javax.xml.xpath.XPathFactory","net.sf.saxon.xpath.XPathFactoryImpl");
+		
+		Document securityHeader; // the DOM document we build
+		OpenSamlSecurityHeader sec; // the XMLObject representation of this
+									// document. Provides methods that
+									// facilitates
+									// document creation
+
+		try {
+			
+			
+
+			this.context = context;
+
+			if (context.getKeystore() == null) {
+				throw new GenerationException("No keystore info found in context.");
+			}
+
+			OpenSamlFacade saml = new OpenSamlFacade();
+			log.info("unmarshall DOM template to XMLObject representation", templateFile);
+			sec = saml.createSecurityFromTemplate(templateFile);
+
+			log.info("generate time values");
+			generateTime();
+
+			log.info("update message timestamp");
+			updateTimestamp(sec);
+
+			log.info("marshall back to DOM");
+			securityHeader = saml.marshallAsNewDOMDocument(sec.getSecurity());
+
+			log.info("update message template");
+			updateTemplate(securityHeader);
+
+			log.info("sign message");
+			signWsseHeader(sec, securityHeader, context.getKeystore());
+
+			log.info("wsse header successfully generated");
+
+		} catch (Exception e) {
+			// we can't do nothing interesting so we return a standard failure
+			throw new GenerationException(e);
+		}
+
+		return securityHeader;
+	}
+
 	private void generateTime() {
 		created = TimeUtil.getCurrentDate();
 		expires = created.plusYears(1);

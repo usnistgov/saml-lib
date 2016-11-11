@@ -74,6 +74,13 @@ public class MyXmlUtils {
 		return doc;
 	}
 
+	public static Document getDocumentWithInputStream(InputStream is)
+			throws SAXException, IOException, ParserConfigurationException {
+		Document doc = dbf.newDocumentBuilder().parse(new InputSource(is));
+		is.close();
+		return doc;
+	}
+
 	public static Document getDocumentAsResource(String resourcePath)
 			throws SAXException, IOException, ParserConfigurationException {
 		URL url = MyXmlUtils.class.getClassLoader().getResource(resourcePath);

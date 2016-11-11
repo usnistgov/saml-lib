@@ -18,7 +18,8 @@ public class TimeUtil {
 	private static final Logger log = LoggerFactory.getLogger(TimeUtil.class);
 
 	public static DateTime getCurrentDate() {
-		return new DateTime();
+		return new DateTime(0);
+		//return new DateTime();
 	}
 
 	/**

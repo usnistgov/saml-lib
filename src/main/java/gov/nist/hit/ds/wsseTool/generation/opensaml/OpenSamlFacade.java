@@ -6,6 +6,7 @@ import gov.nist.hit.ds.wsseTool.util.PrettyPrinter;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 import javax.xml.namespace.QName;
@@ -133,4 +134,9 @@ public class OpenSamlFacade {
 	public OpenSamlSecurityHeader createSecurityFromTemplate(String templateFile) throws GenerationException{
 		return new OpenSamlSecurityHeader(this, templateFile);
 	}
+
+	public OpenSamlSecurityHeader createSecurityFromTemplate(InputStream is) throws GenerationException{
+		return new OpenSamlSecurityHeader(this, is);
+	}
+
 }

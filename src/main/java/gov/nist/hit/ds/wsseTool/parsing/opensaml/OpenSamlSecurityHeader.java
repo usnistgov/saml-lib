@@ -5,6 +5,7 @@ import gov.nist.hit.ds.wsseTool.generation.opensaml.OpenSamlFacade;
 import gov.nist.hit.ds.wsseTool.generation.opensaml.OpenSamlWsseSecurityGenerator;
 import gov.nist.hit.ds.wsseTool.util.MyXmlUtils;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +76,28 @@ public class OpenSamlSecurityHeader {
 		}
 	}
 
+	public OpenSamlSecurityHeader(OpenSamlFacade saml, InputStream is)
+			throws GenerationException {
+
+		try {
+			Document tempDoc = MyXmlUtils
+					.getDocumentWithInputStream(is);
+			log.debug("successfully loaded template");
+
+			Element temp = tempDoc.getDocumentElement();
+
+			Unmarshaller un = Configuration.getUnmarshallerFactory()
+					.getUnmarshaller(temp);
+			assert un != null;
+			log.debug("found opensaml unmarshaller...");
+
+			sec = (Security) saml.fromElement(temp);
+			log.debug("document successfully parsed with opensaml");
+		} catch (Exception e) {
+			throw new GenerationException(e);
+		}
+	}
+	
 	public OpenSamlSecurityHeader(OpenSamlFacade saml, Element element)
 			throws GenerationException {
 

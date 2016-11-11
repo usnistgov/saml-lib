@@ -6,6 +6,7 @@ import java.security.Key;
 import java.security.KeyException;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.xml.XMLConstants;
@@ -139,7 +140,7 @@ public class AltVerifier {
 		PublicKey key = keyValue.getPublicKey();
 
 		DOMValidateContext valContext2 = new DOMValidateContext(KeySelector.singletonKeySelector(key), s);
-
+  
 		// Create an signature factory and unmarshal the signature from XML.
 		XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
 		XMLSignature signature = factory.unmarshalXMLSignature(valContext2);
@@ -160,8 +161,8 @@ public class AltVerifier {
 				boolean refValid = r.validate(valContext2);
 				msg += "Reference with ID " + r.getURI() + " in position" + j + " has validity status: " + refValid
 						+ "\n";
-				msg += "Calculated digest: " + r.getCalculatedDigestValue() + "\n";
-				msg += "Digest value: " + r.getDigestValue() + "\n";
+				msg += "Calculated digest: " + new String(r.getCalculatedDigestValue()) + "\n";
+				msg += "Digest value: " + new String(r.getDigestValue()) + "\n";
 				msg += "Transforms performed: \n";
 				for (Object t : r.getTransforms()) {
 					msg += ((Transform) t).getAlgorithm() + "\n";
