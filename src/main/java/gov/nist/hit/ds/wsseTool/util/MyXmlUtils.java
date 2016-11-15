@@ -46,10 +46,10 @@ public class MyXmlUtils {
 			transformer
 					.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			//transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-			transformer.setOutputProperty(
-					"{http://xml.apache.org/xslt}indent-amount", "4");
+			/*transformer.setOutputProperty(
+					"{http://xml.apache.org/xslt}indent-amount", "4");*/
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();
 		}
