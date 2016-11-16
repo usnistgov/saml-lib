@@ -93,6 +93,7 @@ public class MyXmlUtils {
 			IOException, ParserConfigurationException {
 		Document doc = dbf.newDocumentBuilder().parse(
 				new InputSource(new FileReader(filepath)));
+		doc.normalize();
 		return doc;
 	}
 	
@@ -126,8 +127,8 @@ public class MyXmlUtils {
 	public static void DomToStream(Node xml, Writer out)
 			throws RuntimeException {
 		try {
-			Document d = new DOMSource(xml);
-			d.normalize();
+			DOMSource d = new DOMSource(xml);
+			//d.normalize();
 			transformer.transform(d, new StreamResult(out));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -139,8 +140,8 @@ public class MyXmlUtils {
 		try {
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer trans = tf.newTransformer();
-			Document d = new DOMSource(xml);
-			d.normalize();
+			DOMSource d = new DOMSource(xml);
+			//d.normalize();
 
 			trans.transform(d, new StreamResult(
 					new FileOutputStream(filename)));
