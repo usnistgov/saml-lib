@@ -103,6 +103,23 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		return (print);
 	}
 
+	public static Document rdoc(Document doc) throws XPathExpressionException {
+		XPathFactory xpathFactory = XPathFactory.newInstance();
+		// XPath to find empty text nodes.
+		XPathExpression xpathExp = xpathFactory.newXPath().compile(
+		        "//text()[normalize-space(.) = '']");  
+		NodeList emptyTextNodes = (NodeList) 
+		        xpathExp.evaluate(doc, XPathConstants.NODESET);
+
+		// Remove each empty text node from document.
+		for (int i = 0; i < emptyTextNodes.getLength(); i++) {
+		    Node emptyTextNode = emptyTextNodes.item(i);
+		    emptyTextNode.getParentNode().removeChild(emptyTextNode);
+		}
+		
+		return doc;
+	}
+	
 	public static Document stringToDom(String xmlSource) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		//factory.setIgnoringElementContentWhitespace(true);
@@ -157,7 +174,8 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 		GenContext context = ContextFactory.getInstance();
 		SamlHeaderValidationResults res = new SamlHeaderValidationResults();
 		try {
-            Document doc = stringToDom(document);
+            Document doc = rdoc(stringToDom(document));
+			
             context.setKeystore(new KeystoreAccess(is, keyStorePass, alias, privateKeyPass));
 			context.setParam("patientId", patientId);
 			WsseHeaderValidator validator = new WsseHeaderValidator();
