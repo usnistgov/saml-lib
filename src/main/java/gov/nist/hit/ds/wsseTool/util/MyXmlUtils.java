@@ -71,6 +71,7 @@ public class MyXmlUtils {
 		is = MyXmlUtils.class.getClassLoader()
 				.getResourceAsStream(resourcePath);
 		Document doc = dbf.newDocumentBuilder().parse(new InputSource(is));
+		doc.normalize();
 		is.close();
 		return doc;
 	}
@@ -80,6 +81,7 @@ public class MyXmlUtils {
 		URL url = MyXmlUtils.class.getClassLoader().getResource(resourcePath);
 		InputStream is = url.openStream();
 		Document doc = dbf.newDocumentBuilder().parse(new InputSource(is));
+		doc.normalize();
 		is.close();
 		return doc;
 	}
@@ -124,7 +126,9 @@ public class MyXmlUtils {
 	public static void DomToStream(Node xml, Writer out)
 			throws RuntimeException {
 		try {
-			transformer.transform(new DOMSource(xml), new StreamResult(out));
+			Document d = new DOMSource(xml);
+			d.normalize();
+			transformer.transform(d, new StreamResult(out));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -135,7 +139,10 @@ public class MyXmlUtils {
 		try {
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer trans = tf.newTransformer();
-			trans.transform(new DOMSource(xml), new StreamResult(
+			Document d = new DOMSource(xml);
+			d.normalize();
+
+			trans.transform(d, new StreamResult(
 					new FileOutputStream(filename)));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
