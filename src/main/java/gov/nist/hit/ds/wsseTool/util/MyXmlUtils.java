@@ -58,6 +58,7 @@ public class MyXmlUtils {
 	static {
 		dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware(true);
+		dbf.setIgnoringElementContentWhitespace(true);
 	}
 
 	/**
