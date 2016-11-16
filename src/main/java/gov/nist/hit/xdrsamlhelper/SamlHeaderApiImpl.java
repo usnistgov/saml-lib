@@ -105,7 +105,7 @@ public class SamlHeaderApiImpl extends SamlHeaderApi {
 
 	public static Document stringToDom(String xmlSource) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		factory.setIgnoringElementContentWhitespace(true);
+		//factory.setIgnoringElementContentWhitespace(true);
 		factory.setNamespaceAware(true);
 		return factory.newDocumentBuilder().parse(new InputSource(new StringReader(xmlSource)));
 	}
