@@ -101,10 +101,10 @@ public class OpenSamlWsseSecurityGenerator {
 
 			log.info("marshall back to DOM");
 			securityHeader = saml.marshallAsNewDOMDocument(sec.getSecurity());
-			rdoc(securityHeader);
 			log.info("update message template");
 			updateTemplate(securityHeader);
 
+			rdoc(securityHeader);
 			log.info("sign message");
 			signWsseHeader(sec, securityHeader, context.getKeystore());
 
